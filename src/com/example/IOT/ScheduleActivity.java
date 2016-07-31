@@ -13,6 +13,7 @@ import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.ExpandableListView.OnGroupCollapseListener;
 import android.widget.ExpandableListView.OnGroupExpandListener;
+import com.example.IOT.Adapters.ScheduleExpandableListAdapter;
 
 public class ScheduleActivity extends Activity {
     final Context context = this;

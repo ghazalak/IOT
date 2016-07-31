@@ -12,6 +12,7 @@ import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.ExpandableListView.OnGroupCollapseListener;
 import android.widget.ExpandableListView.OnGroupExpandListener;
+import com.example.IOT.Adapters.SettingExpandableListAdapter;
 
 public class SettingActivity extends Activity {
     SettingExpandableListAdapter listAdapter;
