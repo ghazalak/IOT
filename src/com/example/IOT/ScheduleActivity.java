@@ -40,8 +40,7 @@ public class ScheduleActivity extends Activity {
         });
         expListView.setOnGroupExpandListener(new OnGroupExpandListener() {
             @Override
-            public void onGroupExpand(int groupPosition) {
-            }
+            public void onGroupExpand(int groupPosition) {}
         });
         expListView.setOnGroupCollapseListener(new OnGroupCollapseListener() {
             @Override
