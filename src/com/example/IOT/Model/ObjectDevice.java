@@ -22,7 +22,7 @@ public class ObjectDevice {
     }
     public long getId(){return id;}
     public long getGroupId(){return group_id;}
-    public Integer getCount() {
+    public Integer getPortsCount() {
         return ports.size();
     }
     public String getName() {

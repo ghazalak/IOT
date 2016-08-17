@@ -4,9 +4,6 @@ import com.example.IOT.IDeviceConnectionListener;
 import com.example.IOT.Model.ObjectDevice;
 import com.example.IOT.Model.ObjectPort;
 
-/**
- * Created by ghazal on 7/30/2016.
- */
 public class MqttDeviceConnection implements IDeviceConnection {
 
     @Override

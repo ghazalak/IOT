@@ -12,6 +12,7 @@ import java.security.acl.Group;
 import java.util.ArrayList;
 
 public class Models {
+    public static int MAXIMUM_PORT_COUNT = 4;
     public static ArrayList<ObjectGroup> Groups;
     private static DbHelper dbHelper;
     public static ObjectDevice getDeviceById(long deviceId) {
@@ -133,15 +134,15 @@ public class Models {
         values.put("name", name);
         dbHelper.getReadableDatabase().insertOrThrow("groups", null, values);
     }
-    public static void InsertDevice(String deviceName,int deviceType,int portCount, String deviceAddress, long group_id){
+    public static long InsertDevice(String deviceName,int deviceType,int portCount, String deviceAddress, long group_id){
         ContentValues values;
         values = new ContentValues();
         values.put("name", deviceName);
         values.put("type", deviceType);
         values.put("address", deviceAddress);
-        values.put("portCount",portCount);
+        values.put("portCount", portCount);
         values.put("group_id", group_id);
-        dbHelper.getWritableDatabase().insert("devices", null, values);
+        return dbHelper.getWritableDatabase().insertOrThrow("devices", null, values);
     }
     public static void InsertPorts(String portName, int idx, long device_id){
         ContentValues values;

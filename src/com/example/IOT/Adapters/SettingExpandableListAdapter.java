@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.*;
 import com.example.IOT.Model.ObjectDevice;
 import com.example.IOT.Model.ObjectGroup;
-import com.example.IOT.Model.ObjectPort;
 import com.example.IOT.Models;
 import com.example.IOT.R;
 
@@ -47,7 +46,7 @@ public class SettingExpandableListAdapter extends BaseExpandableListAdapter {
             image.setBackgroundResource(R.drawable.socket_off);
 
         TextView DevicePorts=(TextView)convertView.findViewById(R.id.DevicePorts);
-        DevicePorts.setText("("+device.getCount().toString()+")");
+        DevicePorts.setText("("+device.getPortsCount().toString()+")");
 
         TextView txtListChild = (TextView) convertView.findViewById(R.id.setting_keyname);
         txtListChild.setText(device.getName());
@@ -78,7 +77,7 @@ public class SettingExpandableListAdapter extends BaseExpandableListAdapter {
                 alertDialog.show();
             }
         });
-        Models.Load(_context);
+        //Models.Load(_context);
         return convertView;
     }
 
@@ -102,7 +101,7 @@ public class SettingExpandableListAdapter extends BaseExpandableListAdapter {
         return groupPosition;
     }
 
-    int getEditById(int id)
+    int getEditTextById(int id)
     {
         int buttonId = 0;
         switch (id) {
@@ -121,7 +120,7 @@ public class SettingExpandableListAdapter extends BaseExpandableListAdapter {
         }
         return buttonId;
     }
-    int getTextById(int id)
+    int getTextViewById(int id)
     {
         int buttonId = 0;
         switch (id) {
@@ -215,40 +214,39 @@ public class SettingExpandableListAdapter extends BaseExpandableListAdapter {
                     alertDialogBuilder.setCancelable(false).setPositiveButton("ادامه",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
-                                    int deviceType;
-                                    final ObjectGroup keyTag = (ObjectGroup) arg0.getTag();
+                                    final int deviceType;
+                                    final ObjectGroup groupTag = (ObjectGroup) arg0.getTag();
                                     if(spinnerType.getSelectedItem().toString()=="کلید")
                                         deviceType=1;
                                     else
                                         deviceType=2;
-                                    Models.InsertDevice(deviceName.getText().toString(),
-                                            deviceType,
-                                            spinnerCount.getSelectedItemPosition()+1,
-                                            deviceAddress.getText().toString(),
-                                            keyTag.getId());
-                                    Models.Load(_context);
                                     LayoutInflater li = LayoutInflater.from(_context);
                                     final View promptsView = li.inflate(R.layout.setting_addports_dialog, null);
                                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(_context);
                                     alertDialogBuilder.setView(promptsView);
-                                    int a=keyTag.getDeviceCount();
-                                    for (int j=keyTag.getDevice(a).getCount(); j<4;j++){
-                                         promptsView.findViewById(getEditById(j)).setVisibility(View.GONE);
-                                        promptsView.findViewById(getTextById(j)).setVisibility(View.GONE);
+                                    for (int j= spinnerCount.getSelectedItemPosition() + 1; j<Models.MAXIMUM_PORT_COUNT;j++){
+                                         promptsView.findViewById(getEditTextById(j)).setVisibility(View.GONE);
+                                         promptsView.findViewById(getTextViewById(j)).setVisibility(View.GONE);
                                     }
                                     alertDialogBuilder.setCancelable(false).setPositiveButton("تایید",
                                             new DialogInterface.OnClickListener() {
                                                 public void onClick(DialogInterface dialog, int id) {
 //                                                    ObjectDevice keyTag = (ObjectDevice) arg0.getTag();
-                                                    for(int j=0; j<keyTag.getDevice(groupPosition).getCount();j++){
-                                                        Models.InsertPorts(promptsView.findViewById(getTextById(j)).toString(), j, keyTag.getDevice(groupPosition).getId());
+                                                    long deviceId = Models.InsertDevice(deviceName.getText().toString(),
+                                                            deviceType,
+                                                            spinnerCount.getSelectedItemPosition() + 1,
+                                                            deviceAddress.getText().toString(),
+                                                            groupTag.getId());
+
+                                                    for(int j=0; j<spinnerCount.getSelectedItemPosition() + 1;j++){
+                                                        Models.InsertPorts(promptsView.findViewById(getTextViewById(j)).toString(), j, deviceId);
                                                     }
                                                     Models.Load(_context);
                                                 }
                                             })
                                             .create().show();
 
-                                    Models.Load(_context);
+                                    //Models.Load(_context);
                                 }
                             })
                             .setNegativeButton("بازگشت",

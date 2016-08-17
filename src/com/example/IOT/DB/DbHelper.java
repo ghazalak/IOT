@@ -56,24 +56,6 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(createTable);
 
 
-        String groupName = "";
-        createTable = "delete from groups where name='"+groupName+"'";
-        db.execSQL(createTable);
-
-        String groupId = "";
-        createTable = "delete from devices where group_id='"+groupId+"'";
-        db.execSQL(createTable);
-
-
-        String deviceName = "";
-        createTable = "delete from devices where name='"+deviceName+"'";
-        db.execSQL(createTable);
-
-        String deviceId = "";
-        createTable = "delete from ports where device_id='"+deviceId+"'";
-        db.execSQL(createTable);
-
-
         ContentValues values;
         try {
             values = new ContentValues();

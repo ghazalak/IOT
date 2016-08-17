@@ -21,11 +21,11 @@
             android:textSize="23dp"
             android:textColor="#ffffffff"
             android:layout_alignParentRight="true"/>
-    <CheckBox android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_alignParentRight="true"
-              android:focusable="false"
-              android:id="@+id/setting_checkbox"/>
+    <!--<CheckBox android:layout_width="wrap_content"-->
+              <!--android:layout_height="wrap_content"-->
+              <!--android:layout_alignParentRight="true"-->
+              <!--android:focusable="false"-->
+              <!--android:id="@+id/setting_checkbox"/>-->
     <Button android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_toRightOf="@id/setting_removegroup"
