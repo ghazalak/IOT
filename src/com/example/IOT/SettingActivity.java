@@ -56,13 +56,17 @@ public class SettingActivity extends Activity {
                     EditText editText=(EditText)promptsView.findViewById(R.id.groupName);
                     Models.InsertGroup(editText.getText().toString());
                     Models.Load(getApplicationContext());
+
+                    expListView = (ExpandableListView) findViewById(R.id.setting_explv);
+                    expListView.invalidate();
+                    expListView.invalidateViews();
                 }
             })
-            .setNegativeButton("بازگشت",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.cancel();
-                        }
+                .setNegativeButton("بازگشت",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
                     });
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();

@@ -29,7 +29,6 @@ public class Models {
 
 
     public static void Load(Context context) {
-
         dbHelper = new DbHelper(context);
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
@@ -155,22 +154,17 @@ public class Models {
 
 
     }
-    public static void RemoveGroup(String groupName, long groupId){
-        ContentValues values;
-        values = new ContentValues();
-        values.put("name", groupName);
-        dbHelper.getReadableDatabase().delete("groups", "name=?", new String[]{groupName});
-
+    public static void RemoveGroup(long groupId){
+        dbHelper.getReadableDatabase().delete("ports", "device_id in (select _id from devices where group_id = ?)", new String[]{Long.toString(groupId)});
         dbHelper.getReadableDatabase().delete("devices", "group_id=?", new String[]{Long.toString(groupId)});
+        dbHelper.getReadableDatabase().delete("groups", "_id=?", new String[]{Long.toString(groupId)});
+
+
 
     }
-    public static void RemoveDevice(String deviceName, long deviceId){
-        ContentValues values;
-        values = new ContentValues();
-        values.put("name", deviceName);
-        dbHelper.getReadableDatabase().delete("devices", "name=?", new String[]{deviceName});
-
+    public static void RemoveDevice(long deviceId){
         dbHelper.getReadableDatabase().delete("ports", "device_id=?", new String[]{Long.toString(deviceId)});
 
+        dbHelper.getReadableDatabase().delete("devices", "_id=?", new String[]{Long.toString(deviceId)});
     }
 }

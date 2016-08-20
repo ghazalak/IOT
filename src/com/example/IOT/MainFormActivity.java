@@ -16,7 +16,7 @@ public class MainFormActivity extends TabActivity {
         if (Models.Groups == null) {
             Models.Load(this.getApplicationContext());
         }
-            TabHost mTabHost = getTabHost();
+        TabHost mTabHost = getTabHost();
         mTabHost.addTab(mTabHost.newTabSpec("لیست").setIndicator("لیست").setContent(new Intent(this, ListActivity.class)));
         mTabHost.addTab(mTabHost.newTabSpec("تنظیمات").setIndicator("تنظیمات").setContent(new Intent(this, SettingActivity.class)));
         mTabHost.setCurrentTab(0);
