@@ -11,6 +11,7 @@
             android:background="@android:drawable/ic_input_add"
             android:id="@+id/addGroup"
             android:onClick="btnAddGroupHandler"
+            android:layout_marginTop="50dp"
             />
     <Space
             android:layout_width="wrap_content"

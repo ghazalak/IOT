@@ -197,6 +197,7 @@ public class SettingExpandableListAdapter extends BaseExpandableListAdapter {
                 list = new ArrayList<>();
                 list.add("کلید");
                 list.add("پریز");
+                list.add("RGB LED");
                 adapter = new ArrayAdapter<>(_context, android.R.layout.simple_spinner_item, list);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinnerType.setAdapter(adapter);
@@ -242,7 +243,7 @@ public class SettingExpandableListAdapter extends BaseExpandableListAdapter {
                                                         groupTag.getId());
 
                                                 for (int j = 0; j < spinnerCount.getSelectedItemPosition() + 1; j++) {
-                                                    TextView t = (TextView) promptsView.findViewById(getTextViewById(j));
+                                                    EditText t = (EditText) promptsView.findViewById(getEditTextById(j));
                                                     Models.InsertPorts(t.getText().toString(), j, deviceId);
                                                 }
                                                 Models.Load(_context);

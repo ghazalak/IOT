@@ -10,6 +10,7 @@
             android:id="@+id/buttons_barnameRiziButton"
             android:layout_centerHorizontal="true"
             android:onClick="buttons_BarnameRiziClickHandler"
+            android:layout_marginTop="50dp"
             />
     <ExpandableListView
             android:id="@+id/buttons_explv"
